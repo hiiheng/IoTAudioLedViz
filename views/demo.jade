@@ -1,0 +1,40 @@
+extends index
+
+block demo
+    .demo-1
+        svg.hidden
+        symbol#icon-arrow(viewbox='0 0 24 24')
+        title arrow
+        polygon(points='6.3,12.8 20.9,12.8 20.9,11.2 6.3,11.2 10.2,7.2 9,6 3.1,12 9,18 10.2,16.8 ')
+        symbol#icon-drop(viewbox='0 0 24 24')
+        title drop
+        path(d='M12,21c-3.6,0-6.6-3-6.6-6.6C5.4,11,10.8,4,11.4,3.2C11.6,3.1,11.8,3,12,3s0.4,0.1,0.6,0.3c0.6,0.8,6.1,7.8,6.1,11.2C18.6,18.1,15.6,21,12,21zM12,4.8c-1.8,2.4-5.2,7.4-5.2,9.6c0,2.9,2.3,5.2,5.2,5.2s5.2-2.3,5.2-5.2C17.2,12.2,13.8,7.3,12,4.8z')
+        path(d='M12,18.2c-0.4,0-0.7-0.3-0.7-0.7s0.3-0.7,0.7-0.7c1.3,0,2.4-1.1,2.4-2.4c0-0.4,0.3-0.7,0.7-0.7c0.4,0,0.7,0.3,0.7,0.7C15.8,16.5,14.1,18.2,12,18.2z')
+        main.site-wrapper
+        header.codrops-header
+            .codrops-links
+            //- a.codrops-icon.codrops-icon--prev(href='https://tympanus.net/Tutorials/PiecesSlider/', title='Previous Demo')
+            //-     svg.icon.icon--arrow
+            //-     use(xlink:href='#icon-arrow')
+            //- a.codrops-icon.codrops-icon--drop(href='https://tympanus.net/codrops/?p=33934', title='Back to the article')
+            //-     svg.icon.icon--drop
+            //-     use(xlink:href='#icon-drop')
+            h1.codrops-header__title Creative Audio Visualizers
+            //- nav.demos
+            //- a.demo.demo--current(href='index.html') Demo 1
+            //- a.demo(href='index2.html') Demo 2
+            //- a.demo(href='index3.html') Demo 3
+            //- a.demo(href='index4.html') Demo 4
+            //- a.demo(href='index5.html') Demo 5
+        .content.main
+        .canvas-wrapper
+            #p5_loading.p5_loading
+            .p5_loading__inner
+                span
+            #uploading-animation.p5_loading
+            .p5_loading__inner
+                span
+            canvas#webglcanvas
+    link(rel="stylesheet" type="text/css" href="css/normalize.css")
+    link(rel="stylesheet" type="text/css" href="css/demo.css")
+    script(rel="text/javascript" src="js/demo.js")
