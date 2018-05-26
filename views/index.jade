@@ -2,8 +2,12 @@ extends layout
 
 block content
   h1 Audio Visualization
-  if title == 'Audio Visualization: Demo'
-    block demo
+  if title == 'Audio Visualization: Demo' || title == 'Audio Visualization: Your practice'
+    a(href='/') Go back
+    block partial
   else
-    h2
-      a(href="/demo") View Demo
+    div
+      h2
+        a(href="/demo") View Demo
+      h2
+        a(href='/practice') Practice
