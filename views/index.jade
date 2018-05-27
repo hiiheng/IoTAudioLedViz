@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  h1 Audio Visualization
-  if title == 'Audio Visualization: Demo' || title == 'Audio Visualization: Your practice'
+  h1= title
+  if title == 'LED Audio Visualization: Demo' || title == 'LED Audio Visualization with ESP8266'
     a(href='/') Go back
     block partial
   else

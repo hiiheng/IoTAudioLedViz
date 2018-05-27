@@ -28,6 +28,12 @@ gulp.task("clientJS", () => {
       .pipe(gulp.dest("build/public/js"));
 });
 
+gulp.task("util", () => {
+  return gulp.src("src/util/*.js")
+    .pipe(babel(CONFIG))
+    .pipe(gulp.dest("build/util"));
+});
+
 gulp.task("vendor", () => {
   return gulp.src("src/public/vendor/*.js")
     .pipe(gulp.dest("build/public/vendor"));
@@ -38,9 +44,9 @@ gulp.task("audiofiles", () => {
     .pipe(gulp.dest("build/public/audio"));
 });
 
-gulp.task("default", ["serverJS", "routes", "css", "clientJS", "vendor", "audiofiles"], () => {
+gulp.task("default", ["serverJS", "routes", "css", "clientJS", "vendor", "audiofiles", "util"], () => {
   gulp.watch(
     ["src/*.js", "src/routes/*.js", "src/public/css/*.css", "src/public/js/*.js"],
-    ["serverJS", "routes", "css", "clientJS", "vendor", "audiofiles"]
+    ["serverJS", "routes", "css", "clientJS", "vendor", "audiofiles", "util"]
   );
 });

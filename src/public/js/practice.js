@@ -97,7 +97,7 @@ function postData(url, data) {
       redirect: 'follow', // manual, *follow, error
       referrer: 'no-referrer', // *client, no-referrer
     })
-    .then(response => response.json()) // parses response to JSON
+    .then(response => response.json()); // parses response to JSON
   }
 
 /**
@@ -105,14 +105,13 @@ function postData(url, data) {
  * called directly after setup()
  */
 function draw() {
-
-    noFill();
-    background(BACKGROUND_COLOR);
-
-    var spectrum = fft.analyze();
-    var bass = map(fft.getEnergy("bass"), 0, 255, 0, 120),
-        treble = map(fft.getEnergy("treble"), 0, 255, 0, 1023),
-        mid = map(fft.getEnergy("mid"), 0, 255, 0, 700);
+    var spectrum = fft.analyze(),
+        s_bass = fft.getEnergy("bass", 300),
+        s_treble = fft.getEnergy("treble", 1000),
+        s_mid = fft.getEnergy("lowMid", 600),  
+        mid = map(s_mid, 0, 254, 0, 1023),
+        treble = map(s_treble, 0, 254, 0, 1023),
+        bass = map(s_bass, 0, 254, 0, 1023);
     var arr = [];
 
     arr.push({
@@ -120,17 +119,29 @@ function draw() {
     });
 
     var newDate = new Date();
-    // send new post request every .05 second
+
+    // send new post request @ 60Hz - (1/60)
     var prevTime = Math.floor(prevDate.getTime() / 10.67),
         newTime = Math.floor(newDate.getTime() / 10.67);
     if (prevTime != newTime) {
-        // console.log("timeOld: " +prevTime + " timeNew: " + newTime);
         prevDate = newDate;
         if (mySound.isPlaying()) {
-            postData(window.location.origin + "/api/waves", { waves: arr });
+            postData(
+                window.location.origin + "/api/waves",
+                { 
+                    waves: arr, 
+                    selectedColor : document.getElementById('ledColor').value
+                }
+            );
         }
     }
 
+    drawVisuals(spectrum);
+  }
+
+  function drawVisuals(spectrum) {
+    noFill();
+    background(BACKGROUND_COLOR);
     noStroke();
     fill(0,255,10); // spectrum is green
 

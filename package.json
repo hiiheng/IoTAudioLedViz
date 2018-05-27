@@ -1,7 +1,7 @@
 {
-  "name": "audio-visualization",
+  "name": "led-audio-visualization",
   "version": "1.0.0",
-  "description": "A basic audio visualization project",
+  "description": "A basic WiFi LED Audio Visualization project with ESP8266",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

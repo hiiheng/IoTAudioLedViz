@@ -1,5 +1,13 @@
 extends ../index
 
 block partial
-    h2 Your practice
+    select(name="ledColor")#ledColor
+        option(value="0") Burnt Orange
+        option(value="1") Cyan
+        option(value="2") Ice Blue
+        option(value="3") Ice Purple
+        option(value="4") Pink
+        option(value="5") Teal
+        option(value="6") Yellow
+        option(value="7") Linear
     script(rel="text/javascript" src="js/practice.js")

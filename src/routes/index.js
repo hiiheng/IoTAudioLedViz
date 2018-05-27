@@ -1,7 +1,7 @@
 import { Router } from 'express'
 
 let router = Router();
-const TITLE = "Audio Visualization";
+const TITLE = "LED Audio Visualization";
 
 router.get("/", (req, res, next) => {
   res.render("index", { title : TITLE });
@@ -12,7 +12,7 @@ router.get("/demo", (req, res, next) => {
 });
 
 router.get("/practice", (req, res, next) => {
-  res.render("folder/practice", { title: TITLE + ": Your practice" });
+  res.render("folder/practice", { title: TITLE + " with ESP8266" });
 });
 
 export default router;
