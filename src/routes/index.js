@@ -12,7 +12,7 @@ router.get("/demo", (req, res, next) => {
 });
 
 router.get("/practice", (req, res, next) => {
-  res.render("folder/practice", { title: TITLE + " with ESP8266" });
+  res.render("folder/visualization", { title: TITLE + " with ESP8266" });
 });
 
 export default router;

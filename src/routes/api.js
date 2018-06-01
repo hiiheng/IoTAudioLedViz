@@ -1,13 +1,9 @@
 import { Router } from 'express';
-import { StringDecoder } from 'string_decoder';
 import * as dgram from 'dgram';
 import * as CONSTS from '../util/Consts';
 import * as util from '../util/Util';
 
 let router = Router();
-
-const DECODER = new StringDecoder('utf8');
-const TIME_INTERVAL = 5; // every 5 seconds 
 
 let dGramClient = dgram.createSocket('udp4'),
     message, msg, red, green, blue, treble, mid, bass,
@@ -31,10 +27,12 @@ router.post('/waves', (req, res, next) => {
     treble = Math.floor(req.body.waves[0].treble);
     bass = Math.floor(req.body.waves[0].bass);
     mid = Math.floor(req.body.waves[0].mid);
-    if (selectedColorIdx !== "7")  {
+    if (selectedColorIdx == CONSTS.LINEAR_IDX)  {
+        linearModeOn = true;
+    } else {
         color = CONSTS.COLORS[selectedColorIdx];
         linearModeOn = false;
-    } else linearModeOn = true;
+    }
 
     let newDate = new Date();
     let nextTime = newDate.getTime() / 1000;
@@ -43,7 +41,11 @@ router.post('/waves', (req, res, next) => {
         primary = Math.floor(color[0] * result.primary);
         secondary = Math.floor(color[1] * result.secondary);
         tertiary = Math.floor(color[2] * result.tertiary);
-        if (Math.floor(nextTime - prevTime) == TIME_INTERVAL) {
+        let diff = Math.floor(nextTime - prevTime);
+        if (diff > CONSTS.TIME_INTERVAL) {
+            diff = CONSTS.TIME_INTERVAL;
+        }
+        if (diff == CONSTS.TIME_INTERVAL) {
             prevTime = nextTime;  
             if (linearModeOn) {
                 var changed = util.changeColor(colorIndex, color);
