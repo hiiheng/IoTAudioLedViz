@@ -34,12 +34,13 @@ Clone the project and install dependencies.<br/>
 <code>
  $ clone https://github.com/hiiheng/IoTAudioLedViz.git app && cd app && npm install<br/>
 </code>
+
 Run gulp to compile src files.<br/>
 <code>
  $ gulp<br/>
+</code>
 </blockquote>
 <blockquote>
-</code>
 Generate source documentation.<br/>
 <code>
  $ npm run document
