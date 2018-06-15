@@ -3,15 +3,18 @@ import * as dgram from 'dgram';
 import * as CONSTS from '../util/Consts';
 import * as util from '../util/Util';
 
+/** get router instance */
 let router = Router();
 
+/** get datagram instance using udp4 */
 let dGramClient = dgram.createSocket('udp4'),
     message, msg, red, green, blue, treble, mid, bass,
     primary, secondary, tertiary;
 
+/** intialize default variables */
 let prevDate = new Date(),
-    prevTime = prevDate.getTime() / 1000;
-let colorIndex = 0, color = CONSTS.COLORS[0], linearModeOn = false, selectedColorIdx = null;
+    prevTime = prevDate.getTime() / 1000,
+    colorIndex = 0, color = CONSTS.COLORS[0], linearModeOn = false, selectedColorIdx = null;
 
 // https://stackoverflow.com/questions/12121775/convert-streamed-buffers-to-utf8-string?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 dGramClient.on('message', (msg, rinfo) => {

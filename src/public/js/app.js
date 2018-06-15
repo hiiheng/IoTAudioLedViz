@@ -1,7 +1,13 @@
 let worker,
     URL = window.location.origin;
 
-window.onload = () => {
+window.onload = onLoad;
+
+/**
+ * @function onLoad
+ * @description calls loadWebWorker on page load
+ */
+function onLoad () {
     if (typeof(worker) !== undefined) {
       loadWebWorker();
     } else {
@@ -9,6 +15,10 @@ window.onload = () => {
   }
 };
 
+/**
+ * @function loadWebWorker
+ * @description creates web worker
+ */
 function loadWebWorker() {
   if (worker == undefined) {
     worker = new Worker("js/worker.js");

@@ -1,5 +1,6 @@
 import * as CONSTS from './Consts';
 
+/** utility methods */
 const util = {
         process: function (treble, bass, mid, primary, secondary, tertiary, cb) {
             if (treble > bass) {

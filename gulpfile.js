@@ -46,7 +46,7 @@ gulp.task("audiofiles", () => {
 
 gulp.task("default", ["serverJS", "routes", "css", "clientJS", "vendor", "audiofiles", "util"], () => {
   gulp.watch(
-    ["src/*.js", "src/routes/*.js", "src/public/css/*.css", "src/public/js/*.js"],
+    ["src/*.js", "src/routes/*.js", "src/public/css/*.css", "src/public/js/*.js", "src/util/*.js"],
     ["serverJS", "routes", "css", "clientJS", "vendor", "audiofiles", "util"]
   );
 });

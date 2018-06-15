@@ -1,18 +1,31 @@
 var pieces, radius, fft, mapMouseX, mapMouseY, toggleBtn, audio, uploadBtn, uploadedAudio, uploadAnim;
-var colorPalette = ["#000", "rgba(22, 59, 72, 0.5)", "#00a6e0", "#002a38"];
-var uploadLoading = false;
 
+/** predefined values for demo */
+var colorPalette = ["#000", "rgba(22, 59, 72, 0.5)", "#00a6e0", "#002a38"],
+	uploadLoading = false;
+
+/**
+ * @function preload
+ * @description p5.js lifecycle method that occurs before setup()
+ */
 function preload() {
 	audio = loadSound("audio/DEMO_1.mp3");
 }
 
-
+/**
+ * @function uploaded
+ * @param {*} file 
+ */
 function uploaded(file) {
 	uploadLoading = true;
 	uploadedAudio = loadSound(file.data, uploadedAudioPlay);
 }
 
-
+/**
+ * @function uploadedAudioPlay
+ * @description helper method
+ * @param {*} audioFile 
+ */
 function uploadedAudioPlay(audioFile) {
 
 	uploadLoading = false;
@@ -25,7 +38,10 @@ function uploadedAudioPlay(audioFile) {
 	audio.loop();
 }
 
-
+/**
+ * @function setup
+ * @description p5.js lifecycle method
+ */
 function setup() {
 
 	uploadAnim = select('#uploading-animation');
@@ -49,6 +65,10 @@ function setup() {
 
 }
 
+/**
+ * @function draw
+ * @description p5.js lifecycle method that is continuously called after setup()
+ */
 function draw() {
 
 	// Add a loading animation for the uploaded track
@@ -126,7 +146,10 @@ function draw() {
 
 }
 
-
+/**
+ * @function toggleAudio
+ * @description toggles audio playback
+ */
 function toggleAudio() {
 	if (audio.isPlaying()) {
 		audio.pause();
@@ -135,9 +158,10 @@ function toggleAudio() {
 	}
 }
 
-
+/**
+ * @function windowResized
+ * @description resizes canvas on window resize
+ */
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 }
-
-console.log('loaded demo')

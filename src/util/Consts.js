@@ -1,7 +1,10 @@
 
 // Consts.js
 import { StringDecoder } from 'string_decoder';
+import dotenv from 'dotenv';
+dotenv.load();
 
+/** Consts */
 const CONSTS = {
     COLORS : [          // pre determined colors
         [.7, .1, 0],    // burnt orange
@@ -13,13 +16,14 @@ const CONSTS = {
         [.65, .5, 0],    // yellow
         [.01, .41, .01] // light green
     ],
-    ARDUINO_IP : '192.168.1.89',
-    ARDUINO_PORT : '2390',
+    ARDUINO_IP : process.env.ARDUINO_IP,
+    ARDUINO_PORT : process.env.ARDUINO_PORT,
     FAILURE : 1,
     SUCCESS : 0,
     DECODER : new StringDecoder('utf8'),
     TIME_INTERVAL : 5, // every 5 seconds 
-    LINEAR_IDX : -1
+    LINEAR_IDX : -1,
+    TITLE : "LED Audio Visualization"
 }
 
 module.exports = CONSTS;

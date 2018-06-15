@@ -1,19 +1,35 @@
 let url;
 
-onmessage = function(e) {
+onmessage = onMessage;
+onerror = onError;
+
+/**
+ * @function onMessage
+ * @param {Object} e        event object 
+ */
+function onMessage (e) {
     let json = JSON.parse(e.data);
     if (json.URL) {
         url = json.URL;
     } else {
         postData(url + "/api/waves", json);
     }
-};
+}
 
-onerror = function(e) {
+/**
+ * @function onError
+ * @param {Object} e        event object
+ */
+function onError (e) {
     console.log("Worker Error: ", e);
 };
 
-// taken from https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+/**
+ * @function postData
+ * @param {String} url          URL string
+ * @param {Object} data         data to be converted as JSON format
+ * taken from https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch
+ */
 function postData(url, data) {
     // Default options are marked with *
     return fetch(url, {

@@ -7,6 +7,7 @@ import routes from './routes/index'
 import api from './routes/api'
 import bodyParser from 'body-parser'
 
+/** get express instance for app */
 let app = express();
 
 app.set('views', path.join(__dirname, '../views'));
